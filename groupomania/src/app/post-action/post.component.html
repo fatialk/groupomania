@@ -1,0 +1,28 @@
+<div class="main">
+  <form [formGroup]="postForm" *ngIf="!loading">
+    <div class="screen-1">
+
+      <h2 *ngIf="mode != 'edit'">Nouveau post</h2>
+      <h2 *ngIf="mode == 'edit'">Modifier le post</h2>
+      <div class="form-group field">
+        <label for="title">Titre</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+      </div>
+      <div class="form-group field">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="5" formControlName="description"></textarea>
+      </div>
+      <div class="form-group field">
+        <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
+        <button (click)="imageInput.click()" *ngIf="mode != 'edit'">Ajouter une image</button>
+        <button (click)="imageInput.click()" *ngIf="mode == 'edit'">Modifier l'image</button>
+        <div class="image">
+          <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
+        </div>
+      </div>
+      <button (click)="onSubmit()" [disabled]="postForm.invalid">Envoyer</button>
+      <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    </div>
+  </form>
+</div>

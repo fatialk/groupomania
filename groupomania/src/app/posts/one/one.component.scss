@@ -1,0 +1,151 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .comments{
+    display: flex;
+    width: 60%;
+    box-shadow: 0 0 1em #888;
+    margin: 20px;
+    border-radius: 10px;
+    flex-direction: column;
+    .comment{
+      margin: 20px;
+      .oneComment{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: space-between;
+        width: 100%;
+        fa-icon{
+          padding: 10px;
+        }
+      }
+      p{
+        margin: 0;
+        border-radius: 5px;
+        box-shadow: 0 15px 10px -15px #111;
+        background: #333;
+        color: white;
+        padding: 20px;
+        flex: 0 0 80%;
+      }
+    }
+
+  }
+
+  form{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .newComment {
+      display: flex;
+      width: 60%;
+      box-shadow: 0 0 1em #888;
+      margin: 20px;
+      border-radius: 10px;
+      .commentFields{
+        margin: 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .field{
+        flex: 0 0 80%;
+        textarea{
+          width: 100%;
+        }
+        input{
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+  .post {
+    display: flex;
+    width: 60%;
+    box-shadow: 0 0 1em #888;
+    margin: 20px;
+    border-radius: 10px;
+
+    &.pair{
+      background-color: #eee;
+    }
+    .visuel{
+      flex: 0 0 40%;
+      img {
+        width: 100%;
+        border-radius: 10px 0 0 10px;
+        display: block;
+      }
+    }
+    .infos{
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      .content{
+        flex: 0 0 60%;
+      }
+      fa-icon, fa-layers {
+        padding: 5px;
+      }
+      .actions{
+        display: flex;
+        justify-content: end;
+        flex: 0 0 20%;
+        .buttons{
+          .green {
+            color: green;
+          }
+          .red {
+            color: red;
+          }
+        }
+      }
+
+      .user{
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container{
+    .post{
+      flex-direction: column;
+      width: 95%;
+
+      .visuel {
+        img {
+          border-radius: 10px 10px 0 0;
+        }
+      }
+      .actions{
+        padding: 0 40px 40px 0;
+      }
+      .user{
+        padding: 0 40px 40px 0;
+      }
+    }
+    form {
+      .newComment {
+        width: 95%;
+        .commentFields {
+          flex-direction: column;
+        }
+      }
+    }
+    .comments{
+      width: 95%;
+    }
+  }
+
+}

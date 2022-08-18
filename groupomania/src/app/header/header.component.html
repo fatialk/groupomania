@@ -1,0 +1,25 @@
+<header>
+
+  <div class="menu">
+    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+    <label for="openSidebarMenu" class="sidebarIconToggle">
+      <div class="spinner diagonal part-1"></div>
+      <div class="spinner horizontal"></div>
+      <div class="spinner diagonal part-2"></div>
+    </label>
+    <div id="sidebarMenu">
+      <div class="main-content-wrapper">
+        <a routerLink="list" routerLinkActive="active" *ngIf="isAuth$ | async">Tous les posts</a>
+        <a routerLink="post/create" routerLinkActive="active" *ngIf="isAuth$ | async">Ajouter un post</a>
+        <a (click)="onLogout()" *ngIf="isAuth$ | async">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo">
+    <img src="../../assets/images/logo-red.png" alt="logo">
+  </div>
+
+</header>
+
+

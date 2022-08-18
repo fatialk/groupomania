@@ -1,0 +1,38 @@
+<ng-container *ngIf="posts$ | async as posts">
+  <div class="container" *ngIf="!loading && posts.length <= 0">
+    <h2>Aucun post n'est disponible</h2>
+  </div>
+  <div class="container" *ngIf="!loading && posts.length  > 0">
+    <div class="post" [ngClass]="{'pair': index %2}" *ngFor="let post of posts; let index = index"
+         (click)="onClickPost(post._id)">
+      <div class="visuel"><img [src]="post.imageUrl" [alt]="post.title"></div>
+      <div class="infos">
+        <div class="content">
+          <h2>{{ post.title}}</h2>
+          <p>{{ post.description }}</p>
+        </div>
+        <div class="actions">
+          <div class="buttons">
+            <fa-layers size="2x">
+              <fa-icon [icon]="faGrinHearts" style="color:green"></fa-icon>
+              <fa-layers-counter content="{{ post.likes }}"></fa-layers-counter>
+            </fa-layers>
+            <fa-layers size="2x">
+              <fa-icon [icon]="faFaceAngry" style="color:red"></fa-icon>
+              <fa-layers-counter content="{{ post.dislikes }}"></fa-layers-counter>
+            </fa-layers>
+          </div>
+        </div>
+
+        <div class="user">
+          <div class="pseudo">
+          <span>
+            Par: {{post.userPseudo}}
+          </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

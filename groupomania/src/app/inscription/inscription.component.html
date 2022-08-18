@@ -1,0 +1,37 @@
+<div class="main">
+  <div class="screen-1">
+    <div class="logo m-10">
+    <img src="../../assets/images/logo-red.png" alt="logo" routerLink="/connexion">
+  </div>
+    <form [formGroup]="signupForm" *ngIf="!loading">
+      <div class="field m-10">
+        <label for="pseudo">Pseudo</label>
+        <div class="pseudo">
+          <input class="form-control " type="text" id="pseudo" placeholder="votre pseudo"  formControlName="pseudo"/>
+        </div>
+      </div>
+      <div class="field m-10">
+        <label for="email">Adresse e-mail</label>
+        <div class="email">
+          <input class="form-control " type="email" id="email" placeholder="user@groupomania.com"  formControlName="email"/>
+        </div>
+      </div>
+      <div class="field m-10">
+        <label for="password">Mot de passe</label>
+        <div class="sec-2">
+
+          <input class="form-control pas" type="password" id="password" placeholder="*******"  formControlName="password"/>
+        </div>
+      </div>
+      <div class="field m-10">
+        <label for="confirmPassword"> Confirmation Mot de passe</label>
+        <div class="sec-2">
+
+          <input class="form-control pas" type="password" id="confirmPassword" placeholder="*******"  formControlName="confirmPassword"/>
+        </div>
+      </div>
+      <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+      <button class="signup m-20" [disabled]="signupForm.invalid" (click)="onSignup()">S'insrire</button>
+    </form>
+  </div>
+</div>

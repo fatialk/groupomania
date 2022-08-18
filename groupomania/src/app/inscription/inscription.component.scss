@@ -1,0 +1,119 @@
+* {
+  font-family: "Poppins";
+}
+
+.main {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  height: 100vh;
+}
+
+.accueil {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.accueil .mot-accueil {
+  flex-wrap: wrap;
+  padding: 20px;
+  max-width: 400px;
+  font-size: bold;
+  line-height: 2em;
+
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+form {
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen-1 {
+  background: white;
+  padding: 4em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 1em #e6e9f9;
+  gap: 2em;
+  min-height: 400px;
+}
+
+.screen-1 .logo {
+  margin-top: -3em;
+}
+
+.logo img {
+  width: auto;
+
+}
+
+.screen-1 .field {
+  background: white;
+  box-shadow: 0 0 1em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: #4d4d4d;
+}
+
+.screen-1 .field input {
+  outline: none;
+  border: none;
+}
+
+.screen-1 .field input::-moz-placeholder {
+  color: grey;
+  font-size: 0.9em;
+}
+
+.screen-1 .field input:-ms-input-placeholder {
+  color: grey;
+  font-size: 0.9em;
+}
+
+.screen-1 .field input::placeholder {
+  color: grey;
+  font-size: 0.9em;
+}
+
+.screen-1 .signup {
+  padding: 10px 20px;
+  background: hsl(10deg 99% 50%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  float: right;
+  margin: 30px 20px;
+}
+
+.screen-1 .footer {
+  display: flex;
+  font-size: 0.7em;
+  color: #5e5e5e;
+  gap: 14em;
+  padding-bottom: 10em;
+}
+.text-danger{
+  padding: 10px 20px;
+  color: red;
+  font-weight: bold;
+}
+
+

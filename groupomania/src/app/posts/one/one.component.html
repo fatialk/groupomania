@@ -1,0 +1,85 @@
+<ng-container *ngIf="post$ | async as post">
+  <div class="container">
+    <div class="post">
+      <div class="visuel"><img [src]="post?.imageUrl" [alt]="post?.title"></div>
+      <div class="infos">
+        <div class="content">
+          <h2>{{ post?.title}}</h2>
+          <p>{{ post.description }}</p>
+        </div>
+        <div class="actions">
+          <div class="buttons like-buttons" *ngIf="!likePending">
+            <fa-layers size="2x">
+              <fa-icon [icon]="faGrinHearts" [ngClass]="{'green' : liked, 'disabled': disliked}"
+              (click)="onLike()"></fa-icon>
+              <fa-layers-counter content="{{ post.likes }}"></fa-layers-counter>
+            </fa-layers>
+            <fa-layers size="2x">
+              <fa-icon [icon]="faFaceAngry" [ngClass]="{'red' : disliked, 'disabled': liked}"
+              (click)="onDislike()"></fa-icon>
+              <fa-layers-counter content="{{ post.dislikes }}"></fa-layers-counter>
+            </fa-layers>
+          </div>
+          <div class="buttons like-pending" *ngIf="likePending">
+            en attente
+          </div>
+
+        </div>
+
+
+        <div class="user">
+          <div class="control-buttons">
+            <fa-icon size="lg" [icon]="faEdit"
+            (click)="onModify()" *ngIf="userId === post.userId || isAdmin"></fa-icon>
+            <fa-icon size="lg" [icon]="faTrashCan"
+            (click)="onDelete()" *ngIf="userId === post.userId || isAdmin"></fa-icon>
+          </div>
+          <div class="pseudo">
+            <span>
+              Par: {{post.userPseudo}}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="!loading">
+    <form [formGroup]="commentForm" *ngIf="!loading">
+      <div class="newComment">
+        <div class="commentFields">
+          <div class="field m-10">
+            <label for="comment">Commentaire</label>
+            <div class="comment">
+              <textarea class="form-control " type="text" id="comment" rows="2"  placeholder="Votre Commentaire"
+              formControlName="comment"></textarea>
+            </div>
+            <input class="form-control " type="hidden" id="postId" formControlName="postId" value="{{post.userId}}"/>
+            <input class="form-control " type="hidden" id="userId" formControlName="userId" value="{{post._id}}"/>
+          </div>
+          <button class="signup m-20" [disabled]="commentForm.invalid" (click)="onComment()">Envoyer</button>
+        </div>
+      </div>
+      <p class="text-danger" *ngIf="errorMsgCommentForm">{{ errorMsgCommentForm }}</p>
+    </form>
+  </div>
+</ng-container>
+<ng-container *ngIf="comment$ | async as comments">
+  <div class="container" *ngIf="!loadingComments && comments.length <= 0">
+    <h2>Aucun commentaire pour ce post</h2>
+  </div>
+  <div class="container" *ngIf="!loadingComments && comments.length  > 0">
+    <h2>Commentaires</h2>
+    <div class="comments">
+      <div class="comment" [ngClass]="{'pair': index %2}" *ngFor="let comment of comments; let index = index">
+        <span> Par: {{comment.userPseudo}}</span>
+        <div class="oneComment">
+          <p>{{comment.comment}}</p>
+          <fa-icon  (click)="onDeleteComment(comment)" class="red" [icon]="faTrashCan" *ngIf="userId === comment.userId || isAdmin"></fa-icon>
+        </div>
+        <p class="text-danger" *ngIf="errorMsgComment">{{ errorMsgComment }}</p>
+      </div>
+
+    </div>
+  </div>
+</ng-container>

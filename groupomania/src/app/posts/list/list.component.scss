@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .post {
+    display: flex;
+    cursor: pointer;
+    width: 60%;
+    box-shadow: 0 0 1em #888;
+    margin: 20px;
+    border-radius: 20px;
+
+    &:hover {
+      box-shadow: 0 0 1em aquamarine;
+    }
+
+    &.pair {
+      background-color: #eee;
+    }
+
+    .visuel {
+      flex: 0 0 40%;
+
+      img {
+        width: 100%;
+        border-radius: 20px 0 0 20px;
+        display: block;
+      }
+    }
+
+    .infos {
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+
+      .content {
+        flex: 0 0 60%;
+
+        fa-icon, fa-layers {
+          padding: 5px;
+        }
+      }
+
+      .actions {
+        display: flex;
+        justify-content: end;
+        flex: 0 0 20%;
+
+        fa-icon, fa-layers {
+          padding: 5px;
+        }
+
+        .buttons {
+          .green {
+            color: green;
+          }
+
+          .red {
+            color: red;
+          }
+        }
+      }
+
+      .pseudo {
+        span {
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 750px) {
+  .container{
+    .post{
+      flex-direction: column;
+      width: unset;
+
+      .visuel {
+        img {
+          border-radius: 20px 20px 0 0;
+        }
+      }
+      .actions{
+        padding: 0 40px 0 0;
+      }
+      .user{
+        padding: 0 40px 0 0;
+      }
+    }
+  }
+
+}

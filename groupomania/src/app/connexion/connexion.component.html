@@ -1,0 +1,35 @@
+<form [formGroup]="loginForm" *ngIf="!loading">
+<div class="main">
+
+    <div class="accueil">
+      <div class="logo">
+        <img src="../../assets/images/logo-red.png" alt="logo">
+      </div>
+      <div class="mot-accueil">
+        Bienvenu dans votre réseau social d'entreprise. Partagez et restez en contact entre collègues.
+      </div>
+    </div>
+    <div class="screen-1">
+
+      <div class="field">
+        <label for="email">Adresse e-mail</label>
+        <div class="username">
+          <input class="form-control" type="email"  id="email" placeholder="user@groupomania.com"
+                 formControlName="email"/>
+        </div>
+      </div>
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <div class="sec-2">
+
+          <input class="form-control pas" type="password" id="password" placeholder="*******"
+                 formControlName="password"/>
+        </div>
+      </div>
+      <button routerLink="list" class="login" [disabled]="loginForm.invalid" (click)="onLogin()">Se connecter</button>
+      <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+      <button class="signup" [routerLink]="'/inscription'">Créer un compte</button>
+    </div>
+</div>
+</form>
