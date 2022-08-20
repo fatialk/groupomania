@@ -26,7 +26,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.buttonText = `J'aime`;
+  
     this.loading = true;
     this.posts$ = this.postsService.posts$.pipe(
       tap(() => {

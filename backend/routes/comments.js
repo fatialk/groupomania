@@ -6,9 +6,8 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 
 const commentsCtrl = require('../controllers/comments');
-const postsCtrl = require("../controllers/posts");
 
-router.get('/post/:id', commentsCtrl.getCommentsByPostId);
+router.get('/post/:id', auth, commentsCtrl.getCommentsByPostId);
 
 router.post('/', auth, commentsCtrl.createComment);
 

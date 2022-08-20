@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ConsentComponent} from "./dialog/consent.component";
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,38 +10,38 @@ import {ConsentComponent} from "./dialog/consent.component";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
+  
   public isUserLoggedIn: boolean = false;
-
-  constructor(private authService: AuthService,
-              private dialog: MatDialog) {
-
-  }
-
-  ngOnInit() {
-    this.authService.isAuth$.subscribe((isAuth) => {
-      this.isUserLoggedIn = isAuth;
-      const hasApprouved = this.authService.getUser().hasApprouved;
-      if(isAuth && !hasApprouved)
+  
+  constructor(
+    private authService: AuthService,
+    private dialog: MatDialog
+    ) {
+      if(['/connexion', '/inscription'].includes(window.location.pathname))
       {
-        this.dialog.open(ConsentComponent, {
-          hasBackdrop: false
-        });
+        this.authService.logout();
+      }else
+      {
+        this.authService.refreshUser();
       }
-      console.log('isUserLoggedIn', this.isUserLoggedIn);
-    });
-
+      
+    }
+    
+    ngOnInit() {
+      this.authService.isAuth$.subscribe((isAuth) => {
+        this.isUserLoggedIn = isAuth;
+        const hasApprouved = this.authService.getUser().hasApprouved;
+        if(isAuth && !hasApprouved)
+        {
+          this.dialog.open(ConsentComponent, {
+            hasBackdrop: false
+          });
+        }
+        console.log('isUserLoggedIn', this.isUserLoggedIn);
+      });
+      
+    }
+    
+    
   }
-
-
-  // openDialog() {
-  //
-  //   const dialogConfig = new MatDialogConfig();
-  //
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.autoFocus = true;
-  //
-  //   this.dialog.open(ConsentComponent, dialogConfig);
-  // }
-
-}
+  

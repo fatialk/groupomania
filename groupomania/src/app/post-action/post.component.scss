@@ -23,6 +23,10 @@
     min-height: 400px;
     width: 100%;
 
+    @media screen and (max-width: 750px) {
+      width: auto;
+    }
+
     .field {
       background: white;
       box-shadow: 0 0 1em #e6e9f9;
